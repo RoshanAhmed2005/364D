@@ -1,0 +1,25 @@
+Clock Stretching Starter - execution record
+Simulator: Icarus Verilog 12.0 (Ubuntu package 12.0-2build2), vvp engine
+Compile mode: -g2012 -Wall
+Command: bash run.sh
+All ten simulator invocations exited successfully.
+Questa/ModelSim and synthesis were not executed.
+
+Observed PASS output:
+
+PASS voltage thresholds, range flag, four clock periods, bypass
+PASS FIFO full/empty blocking, wraparound, order, common reset
+PASS FIFO stress: 1000 words, write half-period=5 ns read half-period=7 ns
+PASS FIFO stress: 1000 words, write half-period=7 ns read half-period=3 ns
+PASS FIFO stress: 1000 words, write half-period=4 ns read half-period=4 ns
+PASS slot trigger interval and single-cycle pulse
+PASS datapath adaptive=0 sink_stalls_enabled=1 words=256 packets=32 stalls=113 max_latency_cycles=88 peak_outstanding=17 completion_cycles=387
+PASS datapath adaptive=1 sink_stalls_enabled=1 words=256 packets=32 stalls=113 max_latency_cycles=87 peak_outstanding=17 completion_cycles=387
+PASS datapath adaptive=0 sink_stalls_enabled=0 words=256 packets=32 stalls=0 max_latency_cycles=8 peak_outstanding=8 completion_cycles=269
+PASS datapath adaptive=1 sink_stalls_enabled=0 words=256 packets=32 stalls=30 max_latency_cycles=18 peak_outstanding=9 completion_cycles=300
+
+The long imposed output pause dominates both backpressure runs; equal finish
+times do not imply that clock stretching is free. With no imposed sink pauses,
+this synthetic run completes at cycle 269 for fixed-clock operation and 300
+for adaptive operation. These are functional demo results at toy clock rates,
+not measurements of a real 5G workload, silicon timing, power, or area.
